@@ -1,0 +1,5 @@
+{
+  "buildCommand": "node scripts/build-frontend.js",
+  "outputDirectory": "dist",
+  "framework": null
+}
