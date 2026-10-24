@@ -16,10 +16,10 @@ estimated cooking times, substitutions, and food-safety reminders.
 3. Start the app:
 
    ```powershell
-   python -m uvicorn api:app --reload --host 127.0.0.1 --port 8000
+   python -m uvicorn api:app --reload --host 127.0.0.1 --port 8001
    ```
 
-4. Open <http://localhost:8000>.
+4. Open <http://localhost:8001>.
 
 The frontend and API run on the same origin locally. The original Streamlit
 interface is also available with `streamlit run main.py` if Streamlit is
