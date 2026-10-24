@@ -1,6 +1,8 @@
 # Pantry — Smart Recipe Generator
 
-Pantry turns ingredients you already have into a practical recipe, with cuisine, serving-size, and dietary preferences. The app uses the Python recipe logic in `model.py` and `tools.py`, a FastAPI API, and a static frontend.
+Pantry turns ingredients you already have into a practical recipe. Choose a
+cuisine, serving count, and dietary preference, then get clear instructions,
+estimated cooking times, substitutions, and food-safety reminders.
 
 ## Run locally
 
@@ -10,8 +12,7 @@ Pantry turns ingredients you already have into a practical recipe, with cuisine,
    python -m pip install -r requirements.txt
    ```
 
-2. Create a `.env` file based on `.env.example` and set `OPENAI_API_KEY`.
-
+2. Copy `.env.example` to `.env` and set `OPENAI_API_KEY` to your API key.
 3. Start the app:
 
    ```powershell
@@ -20,27 +21,33 @@ Pantry turns ingredients you already have into a practical recipe, with cuisine,
 
 4. Open <http://localhost:8000>.
 
-The UI and API are served from the same local origin. The existing Streamlit interface is also available with `streamlit run main.py` after installing Streamlit; its AI recipe generation uses the same `.env` settings.
+The frontend and API run on the same origin locally. The original Streamlit
+interface is also available with `streamlit run main.py` if Streamlit is
+installed.
 
 ## Deploy the API to Render
 
-1. Push this repository to GitHub and create a new Render Blueprint using `render.yaml`.
-2. Set `OPENAI_API_KEY` to your OpenAI API key in Render. Set `FRONTEND_URL` to the deployed Vercel site origin, for example `https://pantry-your-team.vercel.app`.
-3. Deploy the service. Its health endpoint is `/api/health`.
-
-The Render API base URL will look like `https://smart-recipe-api.onrender.com`.
+1. Push this repository to GitHub and create a Render Blueprint from
+   `render.yaml`.
+2. Set `OPENAI_API_KEY` in Render's environment settings.
+3. Set `FRONTEND_URL` to the Vercel site origin after deploying the frontend.
+   Multiple allowed origins can be comma-separated.
+4. Deploy the service and verify its `/api/health` endpoint.
 
 ## Deploy the frontend to Vercel
 
-1. Import the same GitHub repository into Vercel.
-2. Add the environment variable `RECIPE_API_URL` with the Render API base URL (for example, `https://smart-recipe-api.onrender.com`).
-3. Deploy. The included `vercel.json` builds the static frontend into `dist`.
-
-Set `FRONTEND_URL` in Render to the Vercel production origin after the Vercel site is created, then redeploy the Render service if necessary. For multiple allowed origins, separate them with commas.
+1. Import this repository into Vercel.
+2. Set the `RECIPE_API_URL` environment variable to the Render API base URL
+   (for example, `https://smart-recipe-api.onrender.com`).
+3. Deploy the project. `vercel.json` builds the static files into `dist`.
+4. Copy the Vercel production origin into Render's `FRONTEND_URL` and redeploy
+   the Render service.
 
 ## Configuration and safety
 
-- Keep API keys in local `.env` files or deployment-provider environment settings. Never commit them.
+- Keep API keys in local `.env` files or provider environment settings. Never
+  commit secrets.
 - `OPENAI_MODEL` is optional and defaults to `gpt-4.1-mini`.
-- The health response reports whether an AI key is configured, without exposing it.
-- Recipe suggestions are not a substitute for checking food safety or ingredient labels. Verify allergens and cook food thoroughly.
+- `/api/health` reports whether an AI key is configured, without exposing it.
+- Recipe suggestions are not a substitute for checking food labels, allergens,
+  or food-safety guidance. Verify ingredients and cook food thoroughly.

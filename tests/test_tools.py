@@ -25,6 +25,10 @@ class RecipeToolsTests(unittest.TestCase):
     def test_estimate_cooking_time_adds_preparation_and_cooking(self):
         self.assertEqual(estimate_cooking_time(10, 25), 35)
 
+    def test_estimate_cooking_time_rejects_negative_values(self):
+        with self.assertRaisesRegex(ValueError, "cannot be negative"):
+            estimate_cooking_time(-1, 5)
+
 
 if __name__ == "__main__":
     unittest.main()

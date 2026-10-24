@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
@@ -20,133 +20,129 @@
     <script src="/app.js" defer></script>
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Pantry home">
-        <span class="brand-mark" aria-hidden="true">p.</span>
-        <span>pantry</span>
-      </a>
-      <div class="topbar-note"><span class="status-dot"></span> Your kitchen, reimagined</div>
-    </header>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Pantry home">
+          <span class="brand-mark" aria-hidden="true">P</span>
+          <span>pantry</span>
+        </a>
+        <span class="header-note">Good food starts with what you have.</span>
+      </header>
 
-    <main>
-      <section class="intro" aria-labelledby="page-title">
-        <div class="eyebrow"><span class="eyebrow-line"></span> A little inspiration for dinner</div>
-        <h1 id="page-title">Good food starts<br />with <em>what you have.</em></h1>
-        <p class="intro-copy">
-          Tell us what’s in your kitchen. We’ll find a delicious way to bring it all together.
-        </p>
-      </section>
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow"><span></span> YOUR KITCHEN, REIMAGINED</p>
+          <h1 id="page-title">A little inspiration.<br />A lot less <em>waste.</em></h1>
+          <p class="intro-copy">
+            Tell us what is in your kitchen. We will turn it into something
+            delicious.
+          </p>
+        </section>
 
-      <section class="recipe-layout" aria-label="Recipe generator">
-        <form class="form-card" id="recipe-form">
-          <div class="section-heading">
-            <span class="step-number">01</span>
-            <div>
-              <h2>Your ingredients</h2>
-              <p>Use commas or a new line between ingredients.</p>
+        <div class="workspace">
+          <section class="form-card" aria-labelledby="form-title">
+            <div class="card-heading">
+              <span class="step-number">01</span>
+              <div>
+                <h2 id="form-title">What have you got?</h2>
+                <p>Start with what is already in your kitchen.</p>
+              </div>
             </div>
-          </div>
 
-          <label class="sr-only" for="ingredients">Ingredients you have</label>
-          <textarea
-            id="ingredients"
-            name="ingredients"
-            placeholder="e.g. chickpeas, spinach, coconut milk, garlic"
-            maxlength="2000"
-            required
-          ></textarea>
-          <div class="input-hint"><span>Up to 50 ingredients</span><span id="ingredient-count">0 entered</span></div>
+            <form id="recipe-form">
+              <label for="ingredients">Your ingredients</label>
+              <textarea
+                id="ingredients"
+                name="ingredients"
+                rows="4"
+                maxlength="2000"
+                placeholder="e.g. chickpeas, spinach, lemon, garlic"
+                required
+              ></textarea>
+              <span class="field-hint">Separate ingredients with commas or new lines.</span>
 
-          <div class="form-divider"></div>
-          <div class="section-heading compact-heading">
-            <span class="step-number">02</span>
-            <div>
-              <h2>Make it yours</h2>
-              <p>A few details help us get it just right.</p>
+              <div class="form-row">
+                <div class="field">
+                  <label for="cuisine">Cuisine</label>
+                  <select id="cuisine" name="cuisine">
+                    <option>Any</option>
+                    <option>Indian</option>
+                    <option>South Indian</option>
+                    <option>Italian</option>
+                    <option>Chinese</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="servings">Servings</label>
+                  <select id="servings" name="servings">
+                    <option value="1">1 person</option>
+                    <option value="2" selected>2 people</option>
+                    <option value="3">3 people</option>
+                    <option value="4">4 people</option>
+                    <option value="5">5 people</option>
+                    <option value="6">6 people</option>
+                    <option value="7">7 people</option>
+                    <option value="8">8 people</option>
+                    <option value="9">9 people</option>
+                    <option value="10">10 people</option>
+                    <option value="11">11 people</option>
+                    <option value="12">12 people</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="diet">Dietary preference</label>
+                <select id="diet" name="diet">
+                  <option>No preference</option>
+                  <option>Vegetarian</option>
+                  <option>Vegan</option>
+                  <option>Egg-based</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="extra">Any other wishes <span>(optional)</span></label>
+                <input
+                  id="extra"
+                  name="extra"
+                  type="text"
+                  maxlength="500"
+                  placeholder="Something quick, extra spicy..."
+                />
+              </div>
+
+              <button id="submit-button" type="submit">
+                <span>Find my recipe</span><span aria-hidden="true">↗</span>
+              </button>
+              <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+
+          <section class="result-card" aria-labelledby="result-title">
+            <div class="result-topline">
+              <span class="step-number">02</span>
+              <span class="result-label">MADE FOR YOUR PANTRY</span>
             </div>
-          </div>
-
-          <div class="field-grid">
-            <div class="field">
-              <label for="cuisine">Cuisine</label>
-              <select id="cuisine" name="cuisine">
-                <option>Any</option>
-                <option>Indian</option>
-                <option>South Indian</option>
-                <option>Italian</option>
-                <option>Chinese</option>
-                <option>Mexican</option>
-                <option>Mediterranean</option>
-              </select>
+            <div id="result-content" class="result-content" aria-live="polite">
+              <div class="empty-state">
+                <span class="bowl-icon" aria-hidden="true">✳</span>
+                <h2 id="result-title">Your next favourite<br />starts here.</h2>
+                <p>Your recipe will appear here, made just for you.</p>
+              </div>
             </div>
-            <div class="field">
-              <label for="servings">Servings</label>
-              <select id="servings" name="servings">
-                <option value="1">1 person</option>
-                <option value="2" selected>2 people</option>
-                <option value="3">3 people</option>
-                <option value="4">4 people</option>
-                <option value="5">5 people</option>
-                <option value="6">6 people</option>
-                <option value="7">7 people</option>
-                <option value="8">8 people</option>
-                <option value="9">9 people</option>
-                <option value="10">10 people</option>
-                <option value="11">11 people</option>
-                <option value="12">12 people</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="diet">Dietary preference</label>
-            <select id="diet" name="diet">
-              <option>No preference</option>
-              <option>Vegetarian</option>
-              <option>Vegan</option>
-              <option>Egg-based</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="extra">Anything else? <span class="optional">Optional</span></label>
-            <input
-              id="extra"
-              name="extra"
-              type="text"
-              maxlength="500"
-              placeholder="Quick, extra spicy, no oven..."
-            />
-          </div>
-
-          <button class="generate-button" id="generate-button" type="submit">
-            <span id="button-label">Find my recipe</span>
-            <span class="button-arrow" aria-hidden="true">↗</span>
-          </button>
-          <p class="form-footnote">Thoughtful ideas, made just for your table.</p>
-        </form>
-
-        <aside class="result-panel" aria-live="polite" aria-atomic="false">
-          <div class="result-decoration" aria-hidden="true">✳</div>
-          <div id="result-content" class="result-content">
-            <div class="result-icon" aria-hidden="true">✦</div>
-            <p class="result-kicker">Your next favorite</p>
-            <h2>Something lovely<br />is cooking.</h2>
-            <p class="result-description">
-              Your recipe will appear here, complete with easy steps, helpful tips, and ingredient notes.
+            <p class="safety-note">
+              <span aria-hidden="true">✳</span>
+              Always check ingredient labels and cook food thoroughly.
             </p>
-            <div class="result-rule"><span></span><span></span><span></span></div>
-            <p class="result-tip"><span aria-hidden="true">✳</span> Start with what’s fresh. The rest is inspiration.</p>
-          </div>
-          <div id="result-error" class="result-error" role="alert" hidden></div>
-          <div class="result-bottom"><span>MADE FOR YOUR KITCHEN</span><span>✳</span></div>
-        </aside>
-      </section>
-    </main>
+          </section>
+        </div>
+      </main>
 
-    <footer>
-      <span>Pantry <span class="footer-dot">·</span> A little more joy in everyday cooking</span>
-      <span>Always check ingredients for your dietary needs.</span>
-    </footer>
+      <footer class="site-footer">
+        <span>Less waste. More wonderful.</span>
+        <span>Pantry · Your kitchen, reimagined</span>
+      </footer>
+    </div>
   </body>
 </html>
