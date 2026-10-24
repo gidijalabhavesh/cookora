@@ -29,10 +29,15 @@ installed.
 
 1. Push this repository to GitHub and create a Render Blueprint from
    `render.yaml`.
-2. Set `OPENAI_API_KEY` in Render's environment settings.
-3. Set `FRONTEND_URL` to the Vercel site origin after deploying the frontend.
-   Multiple allowed origins can be comma-separated.
+2. Set `OPENAI_API_KEY` in Render's environment settings. Never commit this
+   secret or paste it into chat.
+3. The Blueprint sets `FRONTEND_URL` to the deployed Vercel origin. For a
+   different domain, update it in Render; multiple allowed origins can be
+   comma-separated.
 4. Deploy the service and verify its `/api/health` endpoint.
+
+The Blueprint uses Render's free compute plan; free services can spin down
+while idle and take longer to respond on the first request.
 
 ## Deploy the frontend to Vercel
 
